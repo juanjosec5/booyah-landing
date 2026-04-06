@@ -18,7 +18,7 @@
       --bg-2: #181818;
       --bg-3: #222222;
       --text: #F0EEEA;
-      --dim: rgba(240,238,234,0.45);
+      --dim: rgba(240,238,234,0.68);
     }
 
     html { scroll-behavior: smooth; scroll-padding-top: 56px; }
@@ -354,29 +354,97 @@
     }
 
     /* Glitch horizontal bars */
+    /* Glitch bar — neon green, multi-burst with pauses */
     .hero-glitch-bar {
       position: absolute; left: 0; right: 0; height: 0;
-      background: rgba(0,255,136,.07);
-      animation: gBar 3.5s steps(1) infinite;
+      background: rgba(0,255,136,.08);
+      animation: gBar1 7s steps(1) infinite;
       pointer-events: none; z-index: 3;
       mix-blend-mode: screen;
     }
-    @keyframes gBar {
-      0%   { top: 20%; height: 0; }
-      4%   { top: 20%; height: 10px; opacity: 1; }
-      5%   { top: 62%; height: 5px; }
-      6%   { height: 0; }
-      24%  { top: 44%; height: 0; }
-      25%  { top: 44%; height: 14px; opacity: .8; }
-      26%  { height: 0; }
-      48%  { top: 78%; height: 0; }
-      49%  { top: 78%; height: 8px; opacity: .6; }
-      50%  { top: 28%; height: 18px; }
-      51%  { height: 0; }
-      74%  { top: 10%; height: 0; }
-      75%  { top: 10%; height: 12px; opacity: .75; }
-      76%  { height: 0; }
-      100% { height: 0; }
+    /* Second bar — blue tint, offset phase */
+    .hero-glitch-bar-2 {
+      position: absolute; left: 0; right: 0; height: 0;
+      background: rgba(107,140,255,.07);
+      animation: gBar2 9s steps(1) infinite 1.8s;
+      pointer-events: none; z-index: 3;
+      mix-blend-mode: screen;
+    }
+
+    @keyframes gBar1 {
+      /* — BURST 1 — */
+      0%    { top: 23%; height: 0;    opacity: 0; }
+      1%    { top: 23%; height: 52px; opacity: .9; }
+      2.5%  { top: 55%; height: 28px; opacity: .75; }
+      3.5%  { top: 18%; height: 68px; opacity: .95; }
+      5%    { top: 72%; height: 18px; opacity: .6; }
+      6%    { height: 0;    opacity: 0; }
+      /* pause ≈ 0.7s */
+      /* — BURST 2 — */
+      16%   { top: 42%; height: 0;    opacity: 0; }
+      17%   { top: 42%; height: 44px; opacity: .85; }
+      18.5% { top:  8%; height: 72px; opacity: .9; }
+      19.5% { top: 65%; height: 36px; opacity: .7; }
+      21%   { height: 0;    opacity: 0; }
+      /* pause ≈ 0.7s */
+      /* — BURST 3 — */
+      31%   { top: 60%; height: 0;    opacity: 0; }
+      32%   { top: 60%; height: 58px; opacity: .88; }
+      33.5% { top: 30%; height: 40px; opacity: .8; }
+      34.5% { top: 82%; height: 22px; opacity: .65; }
+      36%   { height: 0;    opacity: 0; }
+      /* pause ≈ 0.84s */
+      /* — BURST 4 — */
+      48%   { top: 12%; height: 0;    opacity: 0; }
+      49%   { top: 12%; height: 62px; opacity: .92; }
+      50.5% { top: 48%; height: 30px; opacity: .78; }
+      52%   { top: 25%; height: 50px; opacity: .85; }
+      53.5% { top: 70%; height: 16px; opacity: .6; }
+      55%   { height: 0;    opacity: 0; }
+      /* pause ≈ 0.9s */
+      /* — BURST 5 — */
+      68%   { top: 35%; height: 0;    opacity: 0; }
+      69%   { top: 35%; height: 46px; opacity: .87; }
+      70.5% { top: 15%; height: 64px; opacity: .9; }
+      71.5% { top: 58%; height: 32px; opacity: .72; }
+      73%   { height: 0;    opacity: 0; }
+      /* pause ≈ 1.9s before loop */
+      100%  { height: 0;    opacity: 0; }
+    }
+
+    @keyframes gBar2 {
+      /* — BURST 1 — */
+      0%    { top: 55%; height: 0;    opacity: 0; }
+      1%    { top: 55%; height: 38px; opacity: .7; }
+      2%    { top: 20%; height: 55px; opacity: .8; }
+      3%    { top: 75%; height: 24px; opacity: .65; }
+      4%    { height: 0;    opacity: 0; }
+      /* pause ≈ 1.6s */
+      /* — BURST 2 — */
+      22%   { top: 78%; height: 0;    opacity: 0; }
+      23%   { top: 78%; height: 44px; opacity: .75; }
+      24%   { top: 40%; height: 26px; opacity: .65; }
+      25%   { height: 0;    opacity: 0; }
+      /* pause ≈ 1.7s */
+      /* — BURST 3 — */
+      44%   { top: 32%; height: 0;    opacity: 0; }
+      45%   { top: 32%; height: 60px; opacity: .82; }
+      46%   { top: 62%; height: 30px; opacity: .7; }
+      47%   { top:  5%; height: 48px; opacity: .78; }
+      48%   { height: 0;    opacity: 0; }
+      /* pause ≈ 1.6s */
+      /* — BURST 4 — */
+      66%   { top: 10%; height: 0;    opacity: 0; }
+      67%   { top: 10%; height: 48px; opacity: .78; }
+      68%   { top: 50%; height: 36px; opacity: .68; }
+      69%   { height: 0;    opacity: 0; }
+      /* pause ≈ 1.7s */
+      /* — BURST 5 — */
+      88%   { top: 68%; height: 0;    opacity: 0; }
+      89%   { top: 68%; height: 42px; opacity: .72; }
+      90%   { top: 28%; height: 56px; opacity: .8; }
+      91%   { height: 0;    opacity: 0; }
+      100%  { height: 0;    opacity: 0; }
     }
 
     /* Scanline sweep across title */
@@ -439,7 +507,7 @@
     .sec-title {
       font-family: 'Anton', sans-serif;
       font-size: clamp(2.4rem,7vw,7rem);
-      text-transform: uppercase; line-height: .88;
+      text-transform: uppercase; line-height: calc(1em + 4px);
     }
     .pk { color: var(--neon); }
     .bl { color: var(--blue); }
@@ -475,7 +543,7 @@
     .about-title {
       font-family: 'Anton', sans-serif;
       font-size: clamp(2rem,4.5vw,4.2rem);
-      text-transform: uppercase; line-height: .95;
+      text-transform: uppercase; line-height: calc(1em + 4px);
       margin-bottom: 30px;
     }
     .about-body {
@@ -974,6 +1042,7 @@
 <section id="hero">
   <canvas id="particles"></canvas>
   <div class="hero-glitch-bar"></div>
+  <div class="hero-glitch-bar-2"></div>
   <div class="hero-scanline"></div>
 
   <!-- Decorative SVGs -->
