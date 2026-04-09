@@ -20,11 +20,11 @@
     :root {
       --neon: #E8419A;
       --blue: #6B8CFF;
-      --bg: #111111;
-      --bg-2: #181818;
-      --bg-3: #222222;
-      --text: #F0EEEA;
-      --dim: rgba(240,238,234,0.68);
+      --bg: #E6E2D8;
+      --bg-2: #DDD9CF;
+      --bg-3: #D0CBC0;
+      --text: #1A1611;
+      --dim: rgba(26,22,17,0.65);
     }
 
     html { scroll-behavior: smooth; scroll-padding-top: 56px; }
@@ -276,7 +276,7 @@
     }
     .btn-outline {
       background: transparent; color: var(--text);
-      border: 2px solid rgba(255,255,255,.22);
+      border: 2px solid rgba(0,0,0,.18);
     }
     .btn-outline:hover {
       border-color: var(--blue); color: var(--blue);
@@ -356,11 +356,11 @@
     .pa-stamp {
       position: absolute; bottom: 28px; left: 28px;
       z-index: 3;
-      border: 2px solid rgba(255,255,255,.3);
+      border: 2px solid rgba(0,0,0,.25);
       padding: 5px 7px;
       font-size: .45rem; font-weight: 700;
       letter-spacing: .04em; text-transform: uppercase;
-      line-height: 1.4; color: rgba(255,255,255,.3);
+      line-height: 1.4; color: rgba(0,0,0,.25);
       width: 58px; text-align: center;
     }
 
@@ -582,7 +582,7 @@
     .about-card-lbl {
       position: absolute; bottom: 10px; left: 10px; right: 10px;
       font-size: .6rem; letter-spacing: .14em;
-      text-transform: uppercase; color: rgba(255,255,255,.3);
+      text-transform: uppercase; color: rgba(0,0,0,.25);
       z-index: 2;
     }
     /* Placeholder DJ silhouette */
@@ -596,9 +596,9 @@
     .film-wrap { overflow: hidden; margin-bottom: 18px; }
     .film-strip {
       display: flex; align-items: center;
-      background: rgba(255,255,255,.03);
-      border-top: 2px solid rgba(255,255,255,.07);
-      border-bottom: 2px solid rgba(255,255,255,.07);
+      background: rgba(0,0,0,.04);
+      border-top: 2px solid rgba(0,0,0,.07);
+      border-bottom: 2px solid rgba(0,0,0,.07);
       padding: 14px 0; overflow: hidden;
     }
     .marquee-track {
@@ -635,7 +635,7 @@
       font-family: 'Anton', sans-serif;
       font-size: clamp(.65rem,1.1vw,.95rem);
       letter-spacing: .12em; text-transform: uppercase;
-      color: rgba(255,255,255,.3);
+      color: rgba(0,0,0,.25);
       border: 1px solid transparent;
       opacity: 0; transform: translateY(20px);
       transition: opacity .55s, transform .55s, color .3s,
@@ -706,7 +706,7 @@
     }
     .ccard {
       background: var(--bg-2);
-      border: 1px solid rgba(255,255,255,.06);
+      border: 1px solid rgba(0,0,0,.08);
       padding: 26px 22px; position: relative; overflow: hidden;
       text-decoration: none; color: var(--text); display: block;
       opacity: 0; transform: translateY(28px);
@@ -725,12 +725,12 @@
     }
     .ccard::before {
       width: 130px; height: 130px;
-      border: 1px solid rgba(255,255,255,.05);
+      border: 1px solid rgba(0,0,0,.06);
       animation: vinylSpin 12s linear infinite;
     }
     .ccard::after {
       width: 88px; height: 88px;
-      border: 1px solid rgba(255,255,255,.04);
+      border: 1px solid rgba(0,0,0,.06);
       animation: vinylSpin 12s linear infinite reverse;
     }
     @keyframes vinylSpin { to { transform: rotate(360deg); } }
@@ -766,7 +766,7 @@
 
     .set-tile {
       flex-shrink: 0; width: 150px;
-      background: var(--bg-2); border: 1px solid rgba(255,255,255,.06);
+      background: var(--bg-2); border: 1px solid rgba(0,0,0,.08);
       padding: 18px 14px; text-align: center;
       transition: border-color .3s;
       text-decoration: none; color: inherit;
@@ -774,7 +774,7 @@
     .set-tile:hover { border-color: var(--blue); }
     .vinyl-disc {
       width: 76px; height: 76px; border-radius: 50%;
-      background: conic-gradient(#2a2a2a 0deg 40deg, #111 40deg 80deg, #2a2a2a 80deg 120deg, #111 120deg 160deg, #2a2a2a 160deg 200deg, #111 200deg 240deg, #2a2a2a 240deg 280deg, #111 280deg 320deg, #2a2a2a 320deg 360deg);
+      background: conic-gradient(#B8B4AC 0deg 40deg, #C8C4BC 40deg 80deg, #B8B4AC 80deg 120deg, #C8C4BC 120deg 160deg, #B8B4AC 160deg 200deg, #C8C4BC 200deg 240deg, #B8B4AC 240deg 280deg, #C8C4BC 280deg 320deg, #B8B4AC 320deg 360deg);
       margin: 0 auto 12px; position: relative;
       animation: vinylSpin 5s linear infinite;
     }
@@ -806,14 +806,14 @@
       font-family: 'Anton', sans-serif;
       font-size: clamp(3.5rem,9vw,8rem);
       text-transform: uppercase; line-height: .85;
-      color: rgba(255,255,255,.05);
+      color: rgba(0,0,0,.06);
     }
     .footer-big span { display: block; color: var(--neon); font-size: .48em; }
 
     .footer-links { display: flex; flex-direction: column; gap: 14px; align-items: flex-end; }
     .footer-tag {
       font-size: .6rem; letter-spacing: .22em; text-transform: uppercase;
-      color: rgba(255,255,255,.22); font-style: italic; margin-bottom: 4px;
+      color: rgba(0,0,0,.18); font-style: italic; margin-bottom: 4px;
     }
     .flink {
       display: flex; align-items: center; gap: 12px;
@@ -824,7 +824,7 @@
     .flink:hover { color: var(--neon); }
     .flink-icon {
       width: 34px; height: 34px; border-radius: 50%;
-      background: rgba(255,255,255,.06);
+      background: rgba(0,0,0,.08);
       display: flex; align-items: center; justify-content: center;
       font-size: .8rem; transition: background .2s;
     }
@@ -832,12 +832,12 @@
 
     .footer-bottom {
       max-width: 1200px; margin: 40px auto 0;
-      padding-top: 22px; border-top: 1px solid rgba(255,255,255,.05);
+      padding-top: 22px; border-top: 1px solid rgba(0,0,0,.06);
       display: flex; justify-content: space-between; align-items: center;
     }
     .footer-copy {
       font-size: .6rem; letter-spacing: .16em;
-      text-transform: uppercase; color: rgba(255,255,255,.15);
+      text-transform: uppercase; color: rgba(0,0,0,.2);
     }
 
     /* ─────────────────────────
@@ -849,14 +849,14 @@
       height: 56px;
       display: flex; align-items: center;
       padding: 0 5vw;
-      background: rgba(17,17,17,.8);
+      background: rgba(230,226,216,.88);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(232,65,154,.06);
+      border-bottom: 1px solid rgba(232,65,154,.15);
       transition: background .3s, border-color .3s;
     }
     #nav.scrolled {
-      background: rgba(17,17,17,.96);
+      background: rgba(230,226,216,.97);
       border-bottom-color: rgba(232,65,154,.2);
     }
     .nav-inner {
@@ -917,7 +917,7 @@
     /* Mobile full-screen menu */
     #mob-menu {
       position: fixed; inset: 0;
-      background: rgba(8,8,8,.97);
+      background: rgba(230,226,216,.97);
       z-index: 9990;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
@@ -934,7 +934,7 @@
       font-family: 'Anton', sans-serif;
       font-size: clamp(2rem,9vw,3.8rem);
       text-transform: uppercase; letter-spacing: .04em;
-      text-decoration: none; color: rgba(240,238,234,.38);
+      text-decoration: none; color: rgba(26,22,17,.45);
       transition: color .2s;
       display: block;
       opacity: 0; transform: translateY(20px);
@@ -965,7 +965,7 @@
     }
     .mob-social a {
       font-size: .65rem; letter-spacing: .2em; text-transform: uppercase;
-      color: rgba(240,238,234,.25); text-decoration: none;
+      color: rgba(26,22,17,.3); text-decoration: none;
       transition: color .2s;
     }
     .mob-social a:hover { color: var(--neon); }
@@ -1062,9 +1062,9 @@
   <!-- Skull Left (pink) -->
   <svg class="deco deco-skull-l" viewBox="0 0 220 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <ellipse cx="110" cy="88" rx="78" ry="72" fill="#E8419A" fill-opacity=".1" stroke="#E8419A" stroke-width="1.5"/>
-    <circle cx="80" cy="80" r="20" fill="#111" stroke="#E8419A" stroke-width="1"/>
+    <circle cx="80" cy="80" r="20" fill="#2A2520" stroke="#E8419A" stroke-width="1"/>
     <circle cx="80" cy="80" r="10" fill="#E8419A" fill-opacity=".25"/>
-    <circle cx="140" cy="80" r="20" fill="#111" stroke="#E8419A" stroke-width="1"/>
+    <circle cx="140" cy="80" r="20" fill="#2A2520" stroke="#E8419A" stroke-width="1"/>
     <circle cx="140" cy="80" r="10" fill="#E8419A" fill-opacity=".25"/>
     <path d="M90 115 Q110 125 130 115" stroke="#E8419A" stroke-width="1.5" fill="none"/>
     <rect x="88" y="128" width="11" height="30" rx="3" fill="#E8419A" fill-opacity=".45"/>
@@ -1075,9 +1075,9 @@
   <!-- Skull Right (blue) -->
   <svg class="deco deco-skull-r" viewBox="0 0 220 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <ellipse cx="110" cy="88" rx="78" ry="72" fill="#6B8CFF" fill-opacity=".1" stroke="#6B8CFF" stroke-width="1.5"/>
-    <circle cx="80" cy="80" r="20" fill="#111" stroke="#6B8CFF" stroke-width="1"/>
+    <circle cx="80" cy="80" r="20" fill="#2A2520" stroke="#6B8CFF" stroke-width="1"/>
     <circle cx="80" cy="80" r="10" fill="#6B8CFF" fill-opacity=".25"/>
-    <circle cx="140" cy="80" r="20" fill="#111" stroke="#6B8CFF" stroke-width="1"/>
+    <circle cx="140" cy="80" r="20" fill="#2A2520" stroke="#6B8CFF" stroke-width="1"/>
     <circle cx="140" cy="80" r="10" fill="#6B8CFF" fill-opacity=".25"/>
     <path d="M90 115 Q110 125 130 115" stroke="#6B8CFF" stroke-width="1.5" fill="none"/>
     <rect x="88" y="128" width="11" height="30" rx="3" fill="#6B8CFF" fill-opacity=".45"/>
@@ -1104,13 +1104,13 @@
     <rect x="10" y="18" width="16" height="18" rx="5" fill="#E8419A" fill-opacity=".85"/>
     <rect x="64" y="18" width="16" height="18" rx="5" fill="#E8419A" fill-opacity=".85"/>
     <!-- eyes -->
-    <rect x="28" y="28" width="10" height="10" fill="#111"/>
-    <rect x="52" y="28" width="10" height="10" fill="#111"/>
+    <rect x="28" y="28" width="10" height="10" fill="#2A2520"/>
+    <rect x="52" y="28" width="10" height="10" fill="#2A2520"/>
     <!-- shine -->
     <rect x="30" y="30" width="3" height="3" fill="#fff" fill-opacity=".6"/>
     <rect x="54" y="30" width="3" height="3" fill="#fff" fill-opacity=".6"/>
     <!-- mouth -->
-    <rect x="34" y="45" width="22" height="5" rx="2" fill="#111"/>
+    <rect x="34" y="45" width="22" height="5" rx="2" fill="#2A2520"/>
     <!-- legs -->
     <rect x="28" y="60" width="12" height="20" rx="3" fill="#E8419A" fill-opacity=".7"/>
     <rect x="50" y="60" width="12" height="20" rx="3" fill="#E8419A" fill-opacity=".7"/>
@@ -1181,7 +1181,7 @@
       <div class="about-card">
         <!-- DJ silhouette placeholder -->
         <svg viewBox="0 0 200 280" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="200" height="280" fill="#1a1a1a"/>
+          <rect width="200" height="280" fill="#CFCBC1"/>
           <!-- soft gradient overlay -->
           <rect width="200" height="280" fill="url(#ag1)" opacity=".5"/>
           <defs>
@@ -1197,10 +1197,10 @@
           <!-- head -->
           <ellipse cx="100" cy="98" rx="28" ry="32" fill="#333"/>
           <!-- shoulders -->
-          <path d="M50 200 Q100 170 150 200 L160 280 L40 280 Z" fill="#222"/>
+          <path d="M50 200 Q100 170 150 200 L160 280 L40 280 Z" fill="#C5C1B7"/>
           <!-- laptop -->
           <rect x="68" y="210" width="64" height="44" rx="4" fill="#333"/>
-          <rect x="72" y="214" width="56" height="36" rx="2" fill="#1a1a1a"/>
+          <rect x="72" y="214" width="56" height="36" rx="2" fill="#CFCBC1"/>
           <rect x="74" y="216" width="52" height="32" rx="1" fill="#0a0a0a"/>
           <rect x="60" y="254" width="80" height="6" rx="3" fill="#444"/>
           <!-- Apple logo hint -->
@@ -1210,7 +1210,7 @@
       </div>
       <div class="about-card">
         <svg viewBox="0 0 200 280" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="200" height="280" fill="#1a1a1a"/>
+          <rect width="200" height="280" fill="#CFCBC1"/>
           <rect width="200" height="280" fill="url(#ag2)" opacity=".5"/>
           <defs>
             <linearGradient id="ag2" x1="0" y1="280" x2="200" y2="0" gradientUnits="userSpaceOnUse">
@@ -1219,9 +1219,9 @@
             </linearGradient>
           </defs>
           <!-- vinyl / turntable shape -->
-          <circle cx="100" cy="130" r="60" fill="#222" stroke="#6B8CFF" stroke-width="1.5"/>
-          <circle cx="100" cy="130" r="44" fill="#1a1a1a" stroke="#6B8CFF" stroke-width=".8" stroke-dasharray="4 4"/>
-          <circle cx="100" cy="130" r="28" fill="#111"/>
+          <circle cx="100" cy="130" r="60" fill="#C5C1B7" stroke="#6B8CFF" stroke-width="1.5"/>
+          <circle cx="100" cy="130" r="44" fill="#CFCBC1" stroke="#6B8CFF" stroke-width=".8" stroke-dasharray="4 4"/>
+          <circle cx="100" cy="130" r="28" fill="#2A2520"/>
           <circle cx="100" cy="130" r="12" fill="#6B8CFF" fill-opacity=".35" stroke="#6B8CFF" stroke-width="1"/>
           <circle cx="100" cy="130" r="4" fill="#6B8CFF"/>
           <!-- tonearm -->
@@ -1337,21 +1337,21 @@
         Lon range −79°→−66.9°, Lat range −4.2°→12.5°, viewBox 0 0 380 470
       -->
       <svg viewBox="0 0 380 470" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="380" height="470" fill="#181818" rx="6"/>
+        <rect width="380" height="470" fill="#D5D1C7" rx="6"/>
 
         <!-- ░ Surrounding countries (geographic context) -->
         <!-- Panama -->
         <path d="M 60,154 C 52,148 44,140 38,132 L 28,118 L 20,108 L 28,100 L 42,96 L 58,102 L 68,112 L 74,139 Z"
-              fill="#1e1e1e" stroke="rgba(255,255,255,.04)" stroke-width=".8"/>
+              fill="#C8C4BA" stroke="rgba(0,0,0,.06)" stroke-width=".8"/>
         <!-- Venezuela -->
         <path d="M 203,48 L 225,38 L 260,22 L 310,40 L 360,90 L 375,180 L 375,270 L 337,255 L 323,238 L 253,184 L 217,172 L 200,144 L 197,109 L 197,71 Z"
-              fill="#1e1e1e" stroke="rgba(255,255,255,.04)" stroke-width=".8"/>
+              fill="#C8C4BA" stroke="rgba(0,0,0,.06)" stroke-width=".8"/>
         <!-- Ecuador -->
         <path d="M 21,298 L 57,324 L 99,349 L 113,334 L 100,365 L 68,400 L 15,390 L 10,320 Z"
-              fill="#1e1e1e" stroke="rgba(255,255,255,.04)" stroke-width=".8"/>
+              fill="#C8C4BA" stroke="rgba(0,0,0,.06)" stroke-width=".8"/>
         <!-- Peru / Brazil (S) -->
         <path d="M 113,334 L 183,387 L 264,443 L 260,470 L 170,470 L 90,450 L 90,365 Z"
-              fill="#1e1e1e" stroke="rgba(255,255,255,.04)" stroke-width=".8"/>
+              fill="#C8C4BA" stroke="rgba(0,0,0,.06)" stroke-width=".8"/>
 
         <!-- ▓ Colombia — accurate simplified outline -->
         <path d="
@@ -1387,7 +1387,7 @@
           L 63,172
           C 62,165 61,159 60,154
           Z"
-          fill="#232323" stroke="#E8419A" stroke-width="1.2" stroke-opacity=".5"/>
+          fill="#D8D4CA" stroke="#E8419A" stroke-width="1.2" stroke-opacity=".5"/>
 
         <!-- ● Colombia city dots -->
         <!-- Bogotá -->
@@ -1441,7 +1441,7 @@
 
         <!-- ═ USA / Honduras inset box (top-right) -->
         <rect x="218" y="8" width="154" height="92" rx="3"
-              fill="rgba(17,17,17,.9)" stroke="rgba(107,140,255,.25)" stroke-width="1"/>
+              fill="rgba(220,216,206,.9)" stroke="rgba(107,140,255,.25)" stroke-width="1"/>
         <text x="228" y="24" font-size="7" fill="#6B8CFF" font-family="Space Grotesk,sans-serif"
               font-weight="700" letter-spacing="2">TAMBIÉN EN</text>
         <!-- USA dots -->
@@ -1589,7 +1589,7 @@
 (function () {
   const cv = document.getElementById('particles');
   const cx = cv.getContext('2d');
-  const C = ['#E8419A', '#6B8CFF', '#E8419A', '#E8419A', 'rgba(255,255,255,.4)'];
+  const C = ['#E8419A', '#6B8CFF', '#E8419A', '#E8419A', 'rgba(0,0,0,.2)'];
   let pts = [];
 
   function resize() { cv.width = cv.offsetWidth; cv.height = cv.offsetHeight; }
