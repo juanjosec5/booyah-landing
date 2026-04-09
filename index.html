@@ -43,36 +43,6 @@
       color: var(--text);
       font-family: 'Space Grotesk', sans-serif;
       overflow-x: hidden;
-      cursor: none;
-    }
-
-    /* ── TOUCH: hide custom cursor on mobile ── */
-    @media (pointer: coarse) {
-      body { cursor: auto; }
-      #cursor-glow, #cursor-dot { display: none !important; }
-    }
-
-    /* ── CURSOR ── */
-    #cursor-glow {
-      position: fixed;
-      width: 340px; height: 340px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(232,65,154,.1) 0%, transparent 70%);
-      pointer-events: none;
-      transform: translate(-50%,-50%);
-      z-index: 9999;
-      transition: transform .05s linear;
-    }
-    #cursor-dot {
-      position: fixed;
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--neon);
-      pointer-events: none;
-      transform: translate(-50%,-50%);
-      z-index: 10000;
-      transition: transform .05s linear;
-      mix-blend-mode: screen;
     }
 
     /* ── GRAIN ── */
@@ -702,7 +672,7 @@
 
     /* Hamburger */
     .nav-burger {
-      background: none; border: none; cursor: none;
+      background: none; border: none; cursor: pointer;
       display: flex; flex-direction: column;
       justify-content: center; gap: 5px;
       width: 36px; height: 36px; padding: 4px;
@@ -841,8 +811,6 @@
 </div>
 
 <!-- Cursor -->
-<div id="cursor-glow"></div>
-<div id="cursor-dot"></div>
 
 <!-- Grain (inline SVG filter) -->
 <svg id="grain" xmlns="http://www.w3.org/2000/svg" style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:9998;opacity:.50;mix-blend-mode:overlay">
@@ -1435,19 +1403,6 @@
   })();
 })();
 
-// ── CURSOR ──
-(function () {
-  const g = document.getElementById('cursor-glow');
-  const d = document.getElementById('cursor-dot');
-  let gx = -500, gy = -500, dx = -500, dy = -500;
-
-  document.addEventListener('mousemove', e => {
-    gx = e.clientX; gy = e.clientY;
-    dx = e.clientX; dy = e.clientY;
-    d.style.left = dx + 'px'; d.style.top = dy + 'px';
-    g.style.left = gx + 'px'; g.style.top = gy + 'px';
-  });
-})();
 
 // ── FILM STRIP MARQUEE ──
 (function () {
@@ -1618,7 +1573,7 @@ if (canvas) {
 
   // Dark front face, pink sides — depth reveals the accent color as it rocks
   const matFront = new THREE.MeshStandardMaterial({ color: 0x1a1611, roughness: 0.35, metalness: 0.1 });
-  const matSide  = new THREE.MeshStandardMaterial({ color: 0x3a3530, roughness: 0.6,  metalness: 0.0 });
+  const matSide  = new THREE.MeshStandardMaterial({ color: 0x1c1a17, roughness: 0.7,  metalness: 0.0 });
 
   let mesh;
 
@@ -1648,9 +1603,9 @@ if (canvas) {
         depth: 0.22,
         curveSegments: 12,
         bevelEnabled: true,
-        bevelThickness: 0.09,
-        bevelSize: 0.11,
-        bevelSegments: 20,
+        bevelThickness: 0.045,
+        bevelSize: 0.055,
+        bevelSegments: 12,
       });
       geo.computeBoundingBox();
       const bb = geo.boundingBox;
