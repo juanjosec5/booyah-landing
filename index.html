@@ -90,6 +90,7 @@
       justify-content: center;
       text-align: center;
       padding: calc(56px + 64px) 5vw 80px;
+      perspective: 1000px;
     }
 
     #particles { position: absolute; inset: 0; z-index: 0; }
@@ -114,114 +115,13 @@
       text-transform: uppercase;
       letter-spacing: -.02em;
       position: relative; z-index: 2;
-      animation: glitchMain 2.4s steps(1) infinite, fadeUp .5s .05s both;
+      animation: fadeUp .5s .05s both, titleRock 6s .6s ease-in-out infinite;
       user-select: none;
     }
 
-    /* Neon green channel layer */
-    .hero-title::before {
-      content: attr(data-text);
-      position: absolute; inset: 0;
-      color: var(--neon);
-      opacity: .9;
-      transform: translateX(3px);
-      animation: glitchA 1.7s steps(1) infinite;
-      clip-path: inset(0 0 100% 0);
-      pointer-events: none;
-    }
-
-    /* Blue channel layer */
-    .hero-title::after {
-      content: attr(data-text);
-      position: absolute; inset: 0;
-      color: var(--blue);
-      opacity: .8;
-      transform: translateX(-3px);
-      animation: glitchB 2.1s steps(1) infinite;
-      clip-path: inset(0 0 100% 0);
-      pointer-events: none;
-    }
-
-    /* Main body jitter — constant micro-chaos */
-    @keyframes glitchMain {
-      0%   { transform: translate(0); clip-path: none; }
-      3%   { transform: translate(-2px,1px); clip-path: none; }
-      4%   { transform: translate(2px,-1px); clip-path: none; }
-      5%   { transform: translate(0); }
-      10%  { transform: translate(1px,0); }
-      11%  { transform: translate(-1px,0); }
-      12%  { transform: translate(0); }
-      20%  { transform: translate(0); clip-path: none; }
-      21%  { transform: translate(4px,0); clip-path: inset(8% 0 78% 0); }
-      22%  { transform: translate(-4px,0); clip-path: none; }
-      23%  { transform: translate(0); }
-      35%  { transform: translate(0); clip-path: none; }
-      36%  { transform: translate(-5px,2px); clip-path: inset(42% 0 44% 0); }
-      37%  { transform: translate(5px,-2px); clip-path: inset(60% 0 22% 0); }
-      38%  { transform: translate(-2px,0); clip-path: inset(10% 0 72% 0); }
-      39%  { transform: translate(0); clip-path: none; }
-      50%  { transform: translate(0); }
-      51%  { transform: translate(2px,0); clip-path: inset(72% 0 8% 0); }
-      52%  { transform: translate(-2px,0); clip-path: none; }
-      53%  { transform: translate(0); }
-      65%  { transform: translate(0); clip-path: none; }
-      66%  { transform: translate(-6px,1px); clip-path: inset(18% 0 62% 0); }
-      67%  { transform: translate(6px,-1px); clip-path: inset(52% 0 28% 0); }
-      68%  { transform: translate(-3px,0); clip-path: inset(5% 0 85% 0); }
-      69%  { transform: translate(0); clip-path: none; }
-      80%  { transform: translate(0); }
-      81%  { transform: translate(1px,0); }
-      82%  { transform: translate(-1px,0); }
-      83%  { transform: translate(0); }
-      90%  { transform: translate(0); clip-path: none; }
-      91%  { transform: translate(3px,0); clip-path: inset(30% 0 50% 0); }
-      92%  { transform: translate(-3px,1px); clip-path: inset(65% 0 18% 0); }
-      93%  { transform: translate(0); clip-path: none; }
-      100% { transform: translate(0); clip-path: none; }
-    }
-
-    /* Green channel — slices in and out at own rhythm */
-    @keyframes glitchA {
-      0%   { clip-path: inset(0 0 100% 0); transform: translateX(0); }
-      5%   { clip-path: inset(28% 0 58% 0); transform: translateX(5px); }
-      8%   { clip-path: inset(0 0 100% 0); transform: translateX(0); }
-      15%  { clip-path: inset(62% 0 12% 0); transform: translateX(-7px); }
-      18%  { clip-path: inset(0 0 100% 0); }
-      26%  { clip-path: inset(8% 0 78% 0); transform: translateX(4px); }
-      29%  { clip-path: inset(82% 0 3% 0);  transform: translateX(-4px); }
-      32%  { clip-path: inset(0 0 100% 0); transform: translateX(0); }
-      44%  { clip-path: inset(22% 0 55% 0); transform: translateX(6px); }
-      47%  { clip-path: inset(55% 0 30% 0); transform: translateX(-5px); }
-      50%  { clip-path: inset(0 0 100% 0); transform: translateX(0); }
-      58%  { clip-path: inset(40% 0 38% 0); transform: translateX(8px); }
-      61%  { clip-path: inset(0 0 100% 0); transform: translateX(0); }
-      72%  { clip-path: inset(15% 0 70% 0); transform: translateX(-6px); }
-      75%  { clip-path: inset(70% 0 8% 0);  transform: translateX(5px); }
-      78%  { clip-path: inset(0 0 100% 0); transform: translateX(0); }
-      88%  { clip-path: inset(32% 0 45% 0); transform: translateX(7px); }
-      92%  { clip-path: inset(0 0 100% 0); transform: translateX(0); }
-      100% { clip-path: inset(0 0 100% 0); transform: translateX(0); }
-    }
-
-    /* Blue channel — offset phase from green */
-    @keyframes glitchB {
-      0%   { clip-path: inset(0 0 100% 0); transform: translateX(0); }
-      7%   { clip-path: inset(48% 0 22% 0); transform: translateX(-6px); }
-      10%  { clip-path: inset(0 0 100% 0); transform: translateX(0); }
-      22%  { clip-path: inset(73% 0 6% 0); transform: translateX(8px); }
-      25%  { clip-path: inset(12% 0 72% 0); transform: translateX(-5px); }
-      28%  { clip-path: inset(0 0 100% 0); transform: translateX(0); }
-      38%  { clip-path: inset(33% 0 45% 0); transform: translateX(6px); }
-      42%  { clip-path: inset(0 0 100% 0); transform: translateX(0); }
-      54%  { clip-path: inset(58% 0 18% 0); transform: translateX(-7px); }
-      57%  { clip-path: inset(3% 0 84% 0);  transform: translateX(4px); }
-      60%  { clip-path: inset(0 0 100% 0); transform: translateX(0); }
-      70%  { clip-path: inset(44% 0 33% 0); transform: translateX(-6px); }
-      73%  { clip-path: inset(0 0 100% 0); transform: translateX(0); }
-      83%  { clip-path: inset(20% 0 62% 0); transform: translateX(9px); }
-      85%  { clip-path: inset(75% 0 5% 0);  transform: translateX(-4px); }
-      88%  { clip-path: inset(0 0 100% 0); transform: translateX(0); }
-      100% { clip-path: inset(0 0 100% 0); transform: translateX(0); }
+    @keyframes titleRock {
+      0%, 100% { transform: rotateY(-10deg); }
+      50%       { transform: rotateY(10deg); }
     }
 
     @keyframes fadeUp {
@@ -351,113 +251,6 @@
       letter-spacing: .04em; text-transform: uppercase;
       line-height: 1.4; color: rgba(0,0,0,.25);
       width: 58px; text-align: center;
-    }
-
-    /* Glitch horizontal bars */
-    /* Glitch bar — neon green, multi-burst with pauses */
-    .hero-glitch-bar {
-      position: absolute; left: 0; right: 0; height: 0;
-      background: rgba(232,65,154,.08);
-      animation: gBar1 7s steps(1) infinite;
-      pointer-events: none; z-index: 3;
-      mix-blend-mode: screen;
-    }
-    /* Second bar — blue tint, offset phase */
-    .hero-glitch-bar-2 {
-      position: absolute; left: 0; right: 0; height: 0;
-      background: rgba(107,140,255,.07);
-      animation: gBar2 9s steps(1) infinite 1.8s;
-      pointer-events: none; z-index: 3;
-      mix-blend-mode: screen;
-    }
-
-    @keyframes gBar1 {
-      /* — BURST 1 — */
-      0%    { top: 23%; height: 0;    opacity: 0; }
-      1%    { top: 23%; height: 52px; opacity: .9; }
-      2.5%  { top: 55%; height: 28px; opacity: .75; }
-      3.5%  { top: 18%; height: 68px; opacity: .95; }
-      5%    { top: 72%; height: 18px; opacity: .6; }
-      6%    { height: 0;    opacity: 0; }
-      /* pause ≈ 0.7s */
-      /* — BURST 2 — */
-      16%   { top: 42%; height: 0;    opacity: 0; }
-      17%   { top: 42%; height: 44px; opacity: .85; }
-      18.5% { top:  8%; height: 72px; opacity: .9; }
-      19.5% { top: 65%; height: 36px; opacity: .7; }
-      21%   { height: 0;    opacity: 0; }
-      /* pause ≈ 0.7s */
-      /* — BURST 3 — */
-      31%   { top: 60%; height: 0;    opacity: 0; }
-      32%   { top: 60%; height: 58px; opacity: .88; }
-      33.5% { top: 30%; height: 40px; opacity: .8; }
-      34.5% { top: 82%; height: 22px; opacity: .65; }
-      36%   { height: 0;    opacity: 0; }
-      /* pause ≈ 0.84s */
-      /* — BURST 4 — */
-      48%   { top: 12%; height: 0;    opacity: 0; }
-      49%   { top: 12%; height: 62px; opacity: .92; }
-      50.5% { top: 48%; height: 30px; opacity: .78; }
-      52%   { top: 25%; height: 50px; opacity: .85; }
-      53.5% { top: 70%; height: 16px; opacity: .6; }
-      55%   { height: 0;    opacity: 0; }
-      /* pause ≈ 0.9s */
-      /* — BURST 5 — */
-      68%   { top: 35%; height: 0;    opacity: 0; }
-      69%   { top: 35%; height: 46px; opacity: .87; }
-      70.5% { top: 15%; height: 64px; opacity: .9; }
-      71.5% { top: 58%; height: 32px; opacity: .72; }
-      73%   { height: 0;    opacity: 0; }
-      /* pause ≈ 1.9s before loop */
-      100%  { height: 0;    opacity: 0; }
-    }
-
-    @keyframes gBar2 {
-      /* — BURST 1 — */
-      0%    { top: 55%; height: 0;    opacity: 0; }
-      1%    { top: 55%; height: 38px; opacity: .7; }
-      2%    { top: 20%; height: 55px; opacity: .8; }
-      3%    { top: 75%; height: 24px; opacity: .65; }
-      4%    { height: 0;    opacity: 0; }
-      /* pause ≈ 1.6s */
-      /* — BURST 2 — */
-      22%   { top: 78%; height: 0;    opacity: 0; }
-      23%   { top: 78%; height: 44px; opacity: .75; }
-      24%   { top: 40%; height: 26px; opacity: .65; }
-      25%   { height: 0;    opacity: 0; }
-      /* pause ≈ 1.7s */
-      /* — BURST 3 — */
-      44%   { top: 32%; height: 0;    opacity: 0; }
-      45%   { top: 32%; height: 60px; opacity: .82; }
-      46%   { top: 62%; height: 30px; opacity: .7; }
-      47%   { top:  5%; height: 48px; opacity: .78; }
-      48%   { height: 0;    opacity: 0; }
-      /* pause ≈ 1.6s */
-      /* — BURST 4 — */
-      66%   { top: 10%; height: 0;    opacity: 0; }
-      67%   { top: 10%; height: 48px; opacity: .78; }
-      68%   { top: 50%; height: 36px; opacity: .68; }
-      69%   { height: 0;    opacity: 0; }
-      /* pause ≈ 1.7s */
-      /* — BURST 5 — */
-      88%   { top: 68%; height: 0;    opacity: 0; }
-      89%   { top: 68%; height: 42px; opacity: .72; }
-      90%   { top: 28%; height: 56px; opacity: .8; }
-      91%   { height: 0;    opacity: 0; }
-      100%  { height: 0;    opacity: 0; }
-    }
-
-    /* Scanline sweep across title */
-    .hero-scanline {
-      position: absolute; left: 0; right: 0; height: 3px;
-      background: linear-gradient(90deg, transparent, rgba(232,65,154,.35), transparent);
-      animation: scanSweep 4s linear infinite;
-      pointer-events: none; z-index: 4;
-    }
-    @keyframes scanSweep {
-      0%   { top: 0; opacity: 1; }
-      85%  { top: 100%; opacity: .3; }
-      100% { top: 100%; opacity: 0; }
     }
 
     /* scroll hint */
@@ -1076,9 +869,6 @@
 ══════════════════════════ -->
 <section id="hero">
   <canvas id="particles"></canvas>
-  <div class="hero-glitch-bar"></div>
-  <div class="hero-glitch-bar-2"></div>
-  <div class="hero-scanline"></div>
 
   <!-- Decorative SVGs -->
   <!-- Skull Left (pink) -->
