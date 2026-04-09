@@ -88,51 +88,145 @@ new FontLoader().load(
   }
 );
 
+// ── Animation config ──
+const ANIM = {
+  rockY:     0.14,   // amplitude of Y rotation (radians)
+  rockYSpeed: 3,     // period divisor — higher = slower
+  rockX:     0.04,
+  rockXSpeed: 5,
+};
+
 // ── Animation loop ──
 const clock = new THREE.Clock();
 (function tick() {
   requestAnimationFrame(tick);
   if (mesh) {
     const t = clock.getElapsedTime();
-    mesh.rotation.y = Math.sin(t / 3) * 0.14;
-    mesh.rotation.x = Math.sin(t / 5) * 0.04;
+    mesh.rotation.y = Math.sin(t / ANIM.rockYSpeed) * ANIM.rockY;
+    mesh.rotation.x = Math.sin(t / ANIM.rockXSpeed) * ANIM.rockX;
   }
   renderer.render(scene, camera);
 })();
 
 
-// ── DEV PANEL: depth slider ────────────────────────────────────────────────
-// Shows a floating panel to tweak depth in real-time.
-// Hidden by default — toggle with the ⚙ button in the bottom-right corner.
+// ── DEV PANEL ─────────────────────────────────────────────────────────────
+// Toggle with the ⚙ button in the bottom-right corner.
 
 function initDevPanel() {
+  // ── helpers ──
+  const ACCENT = '#E8419A';
+  const row = (label, inputHtml) => `
+    <label style="display:flex;flex-direction:column;gap:3px;font-size:11px">
+      <span style="color:rgba(230,226,216,.6);letter-spacing:.06em">${label}</span>
+      ${inputHtml}
+    </label>`;
+  const slider = (id, min, max, step, val) =>
+    `<input id="${id}" type="range" min="${min}" max="${max}" step="${step}" value="${val}"
+      style="accent-color:${ACCENT};width:100%">`;
+  const section = (title) =>
+    `<div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:${ACCENT};
+      margin-top:6px;padding-top:8px;border-top:1px solid rgba(255,255,255,.07)">${title}</div>`;
+
   const panel = document.createElement('div');
   panel.id = 'dev-panel';
   panel.style.cssText = `
     position: fixed; bottom: 72px; right: 20px;
-    background: rgba(26,22,17,.92); color: #e6e2d8;
-    padding: 16px 20px; font-family: monospace; font-size: 13px;
+    background: rgba(26,22,17,.95); color: #e6e2d8;
+    padding: 16px 18px; font-family: monospace; font-size: 12px;
     border: 1px solid rgba(232,65,154,.35); border-radius: 4px;
-    z-index: 99999; min-width: 220px;
-    display: none; flex-direction: column; gap: 10px;
+    z-index: 99999; width: 260px; max-height: 80vh; overflow-y: auto;
+    display: none; flex-direction: column; gap: 8px;
+    scrollbar-width: thin; scrollbar-color: ${ACCENT} transparent;
   `;
+
   panel.innerHTML = `
-    <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#E8419A;margin-bottom:4px">3D Title Dev</div>
-    <label style="display:flex;flex-direction:column;gap:4px">
-      <span>Depth</span>
-      <input id="dp-depth" type="range" min="0.01" max="0.60" step="0.01" value="${GEO_CONFIG.depth}" style="accent-color:#E8419A">
-    </label>
-    <label style="display:flex;flex-direction:column;gap:4px">
-      <span>Bevel size</span>
-      <input id="dp-bevel" type="range" min="0.00" max="0.15" step="0.005" value="${GEO_CONFIG.bevelSize}" style="accent-color:#E8419A">
-    </label>
-    <div id="dp-values" style="font-size:11px;color:rgba(230,226,216,.55);border-top:1px solid rgba(255,255,255,.07);padding-top:8px">
-      depth: ${GEO_CONFIG.depth} &nbsp;|&nbsp; bevel: ${GEO_CONFIG.bevelSize}
-    </div>
+    <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:${ACCENT}">3D Title — Dev Panel</div>
+
+    ${section('Geometry')}
+    ${row('Depth',           slider('dp-depth',   0.01, 0.60, 0.005, GEO_CONFIG.depth))}
+    ${row('Size',            slider('dp-size',    0.50, 2.00, 0.05,  GEO_CONFIG.size))}
+    ${row('Curve segments',  slider('dp-curves',  2,    24,   1,     GEO_CONFIG.curveSegments))}
+
+    ${section('Bevel')}
+    ${row('Bevel size',      slider('dp-bsize',   0.00, 0.20, 0.005, GEO_CONFIG.bevelSize))}
+    ${row('Bevel thickness', slider('dp-bthick',  0.00, 0.20, 0.005, GEO_CONFIG.bevelThickness))}
+    ${row('Bevel segments',  slider('dp-bsegs',   1,    20,   1,     GEO_CONFIG.bevelSegments))}
+
+    ${section('Animation')}
+    ${row('Rock Y amplitude',  slider('dp-ry',    0.00, 0.50, 0.01,  ANIM.rockY))}
+    ${row('Rock Y speed',      slider('dp-rys',   0.50, 10,   0.25,  ANIM.rockYSpeed))}
+    ${row('Rock X amplitude',  slider('dp-rx',    0.00, 0.20, 0.005, ANIM.rockX))}
+
+    ${section('Lighting')}
+    ${row('Key intensity',   slider('dp-key',     0.00, 3.00, 0.05,  key.intensity))}
+    ${row('Rim intensity',   slider('dp-rim',     0.00, 2.00, 0.05,  rim.intensity))}
+    ${row('Ambient',         slider('dp-amb',     0.00, 2.00, 0.05,  0.55))}
+
+    <div id="dp-values" style="
+      font-size:10px;color:rgba(230,226,216,.45);
+      border-top:1px solid rgba(255,255,255,.07);
+      padding-top:8px;margin-top:4px;line-height:1.7;white-space:pre
+    "></div>
   `;
   document.body.appendChild(panel);
 
-  // Toggle button
+  // Grab the ambient light reference so we can update it
+  let ambLight;
+  scene.traverse(obj => { if (obj.isAmbientLight) ambLight = obj; });
+
+  function readValues() {
+    return {
+      geo: {
+        depth:          +panel.querySelector('#dp-depth').value,
+        size:           +panel.querySelector('#dp-size').value,
+        curveSegments:  +panel.querySelector('#dp-curves').value,
+        bevelSize:      +panel.querySelector('#dp-bsize').value,
+        bevelThickness: +panel.querySelector('#dp-bthick').value,
+        bevelSegments:  +panel.querySelector('#dp-bsegs').value,
+      },
+      anim: {
+        rockY:      +panel.querySelector('#dp-ry').value,
+        rockYSpeed: +panel.querySelector('#dp-rys').value,
+        rockX:      +panel.querySelector('#dp-rx').value,
+      },
+      light: {
+        key: +panel.querySelector('#dp-key').value,
+        rim: +panel.querySelector('#dp-rim').value,
+        amb: +panel.querySelector('#dp-amb').value,
+      },
+    };
+  }
+
+  function updateValues() {
+    const v = readValues();
+
+    // Geometry — only rebuild if geo params changed
+    const geoChanged = Object.keys(v.geo).some(k => GEO_CONFIG[k] !== v.geo[k]);
+    if (geoChanged) {
+      Object.assign(GEO_CONFIG, v.geo, { bevelEnabled: true });
+      buildMesh(GEO_CONFIG);
+    }
+
+    // Animation
+    Object.assign(ANIM, v.anim);
+
+    // Lights
+    key.intensity = v.light.key;
+    rim.intensity = v.light.rim;
+    if (ambLight) ambLight.intensity = v.light.amb;
+
+    // Status readout
+    const g = v.geo, a = v.anim, l = v.light;
+    panel.querySelector('#dp-values').textContent =
+      `depth ${g.depth.toFixed(3)}  size ${g.size.toFixed(2)}  curves ${g.curveSegments}\n` +
+      `bevel sz ${g.bevelSize.toFixed(3)}  th ${g.bevelThickness.toFixed(3)}  segs ${g.bevelSegments}\n` +
+      `rockY ${a.rockY.toFixed(3)} @ spd ${a.rockYSpeed}  rockX ${a.rockX.toFixed(3)}\n` +
+      `key ${l.key.toFixed(2)}  rim ${l.rim.toFixed(2)}  amb ${l.amb.toFixed(2)}`;
+  }
+
+  panel.addEventListener('input', updateValues);
+
+  // ── Toggle button ──
   const btn = document.createElement('button');
   btn.id = 'dev-toggle';
   btn.textContent = '⚙';
@@ -140,7 +234,7 @@ function initDevPanel() {
   btn.style.cssText = `
     position: fixed; bottom: 20px; right: 20px;
     width: 40px; height: 40px; border-radius: 50%;
-    background: rgba(26,22,17,.85); color: #E8419A;
+    background: rgba(26,22,17,.85); color: ${ACCENT};
     border: 1px solid rgba(232,65,154,.4);
     font-size: 18px; cursor: pointer; z-index: 99999;
     display: flex; align-items: center; justify-content: center;
@@ -151,15 +245,6 @@ function initDevPanel() {
   });
   document.body.appendChild(btn);
 
-  // Live update on slider change
-  function update() {
-    GEO_CONFIG.depth      = parseFloat(document.getElementById('dp-depth').value);
-    GEO_CONFIG.bevelSize  = parseFloat(document.getElementById('dp-bevel').value);
-    document.getElementById('dp-values').textContent =
-      `depth: ${GEO_CONFIG.depth.toFixed(3)}  |  bevel: ${GEO_CONFIG.bevelSize.toFixed(3)}`;
-    buildMesh(GEO_CONFIG);
-  }
-
-  document.getElementById('dp-depth').addEventListener('input', update);
-  document.getElementById('dp-bevel').addEventListener('input', update);
+  // Prime the readout
+  updateValues();
 }
