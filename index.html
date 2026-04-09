@@ -25,6 +25,7 @@
       --bg-3: #D0CBC0;
       --text: #1A1611;
       --dim: rgba(26,22,17,0.65);
+      --skew: 52px;
     }
 
     html { scroll-behavior: smooth; scroll-padding-top: 56px; }
@@ -76,7 +77,7 @@
     }
 
     /* ── SECTIONS ── */
-    section { position: relative; overflow: hidden; }
+    section { position: relative; overflow: hidden; z-index: 1; }
 
     /* ─────────────────────────
        HERO
@@ -484,14 +485,6 @@
     }
 
     /* ─────────────────────────
-       DIVIDER
-    ───────────────────────── */
-    .divider {
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--neon), var(--blue), transparent);
-    }
-
-    /* ─────────────────────────
        SECTION HEADER
     ───────────────────────── */
     .sec-header {
@@ -527,7 +520,13 @@
     /* ─────────────────────────
        ABOUT
     ───────────────────────── */
-    #about { padding: 110px 5vw; background: var(--bg); }
+    #about {
+      padding: calc(110px + var(--skew)) 5vw 110px;
+      background: var(--bg);
+      clip-path: polygon(0 0, 100% var(--skew), 100% 100%, 0 100%);
+      margin-top: calc(-1 * var(--skew));
+      z-index: 2;
+    }
 
     .about-inner {
       max-width: 1200px; margin: 0 auto;
@@ -579,7 +578,13 @@
     /* ─────────────────────────
        MASSIVE OPENINGS
     ───────────────────────── */
-    #openings { padding: 100px 0; background: var(--bg-2); }
+    #openings {
+      padding: calc(100px + var(--skew)) 0 100px;
+      background: var(--bg-2);
+      clip-path: polygon(0 var(--skew), 100% 0, 100% 100%, 0 100%);
+      margin-top: calc(-1 * var(--skew));
+      z-index: 3;
+    }
 
     .film-wrap { overflow: hidden; margin-bottom: 18px; }
     .film-strip {
@@ -610,7 +615,13 @@
     /* ─────────────────────────
        BRANDS
     ───────────────────────── */
-    #brands { padding: 100px 5vw; background: var(--bg); }
+    #brands {
+      padding: calc(100px + var(--skew)) 5vw 100px;
+      background: var(--bg);
+      clip-path: polygon(0 0, 100% var(--skew), 100% 100%, 0 100%);
+      margin-top: calc(-1 * var(--skew));
+      z-index: 4;
+    }
 
     .brands-grid {
       max-width: 1040px; margin: 0 auto;
@@ -639,7 +650,13 @@
     /* ─────────────────────────
        VENUES
     ───────────────────────── */
-    #venues { padding: 100px 5vw; background: var(--bg-2); }
+    #venues {
+      padding: calc(100px + var(--skew)) 5vw 100px;
+      background: var(--bg-2);
+      clip-path: polygon(0 var(--skew), 100% 0, 100% 100%, 0 100%);
+      margin-top: calc(-1 * var(--skew));
+      z-index: 5;
+    }
 
     .venues-inner {
       max-width: 1200px; margin: 56px auto 0;
@@ -686,7 +703,13 @@
     /* ─────────────────────────
        MADE BY BOOYAH
     ───────────────────────── */
-    #content-sec { padding: 100px 5vw; background: var(--bg); }
+    #content-sec {
+      padding: calc(100px + var(--skew)) 5vw 100px;
+      background: var(--bg);
+      clip-path: polygon(0 0, 100% var(--skew), 100% 100%, 0 100%);
+      margin-top: calc(-1 * var(--skew));
+      z-index: 6;
+    }
 
     .content-cards {
       max-width: 1200px; margin: 56px auto 0;
@@ -781,9 +804,11 @@
        FOOTER
     ───────────────────────── */
     #footer {
-      padding: 80px 5vw 56px;
+      padding: calc(80px + var(--skew)) 5vw 56px;
       background: var(--bg-2);
-      border-top: 1px solid rgba(232,65,154,.18);
+      clip-path: polygon(0 var(--skew), 100% 0, 100% 100%, 0 100%);
+      margin-top: calc(-1 * var(--skew));
+      z-index: 7;
     }
     .footer-inner {
       max-width: 1200px; margin: 0 auto;
@@ -1152,7 +1177,6 @@
   </div>
 </section>
 
-<div class="divider"></div>
 
 <!-- ══════════════════════════
      ABOUT
@@ -1233,7 +1257,6 @@
   </div>
 </section>
 
-<div class="divider"></div>
 
 <!-- ══════════════════════════
      MASSIVE OPENINGS
@@ -1258,7 +1281,6 @@
   </div>
 </section>
 
-<div class="divider"></div>
 
 <!-- ══════════════════════════
      BRANDS
@@ -1286,7 +1308,6 @@
   </div>
 </section>
 
-<div class="divider"></div>
 
 <!-- ══════════════════════════
      VENUES & GIGS
@@ -1473,7 +1494,6 @@
   </div>
 </section>
 
-<div class="divider"></div>
 
 <!-- ══════════════════════════
      MADE BY BOOYAH
@@ -1546,7 +1566,6 @@
   </div>
 </section>
 
-<div class="divider"></div>
 
 <!-- ══════════════════════════
      FOOTER
