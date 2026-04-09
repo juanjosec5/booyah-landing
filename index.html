@@ -71,20 +71,8 @@
       position: fixed; inset: 0;
       pointer-events: none;
       z-index: 9998;
-      opacity: .4;
+      opacity: .5;
       mix-blend-mode: overlay;
-    }
-
-    /* ── VHS SCANLINES ── */
-    .vhs {
-      position: fixed; inset: 0;
-      pointer-events: none;
-      z-index: 9997;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent, transparent 2px,
-        rgba(0,0,0,.025) 2px, rgba(0,0,0,.025) 4px
-      );
     }
 
     /* ── SECTIONS ── */
@@ -1038,16 +1026,25 @@
 <div id="cursor-dot"></div>
 
 <!-- Grain (inline SVG filter) -->
-<svg id="grain" xmlns="http://www.w3.org/2000/svg" style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:9998;opacity:.38;mix-blend-mode:overlay">
+<svg id="grain" xmlns="http://www.w3.org/2000/svg" style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:9998;opacity:.50;mix-blend-mode:overlay">
   <filter id="gf" x="0" y="0" width="100%" height="100%">
-    <feTurbulence type="fractalNoise" baseFrequency=".72" numOctaves="4" stitchTiles="stitch"/>
+    <feTurbulence type="fractalNoise" baseFrequency=".50" numOctaves="6" stitchTiles="stitch"/>
     <feColorMatrix type="saturate" values="0"/>
   </filter>
   <rect width="100%" height="100%" filter="url(#gf)"/>
 </svg>
 
-<!-- VHS -->
-<div class="vhs"></div>
+<!-- Pink risograph noise layer -->
+<svg id="grain-pink" xmlns="http://www.w3.org/2000/svg" style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:9996;opacity:.06;mix-blend-mode:multiply">
+  <filter id="gf2" x="0" y="0" width="100%" height="100%">
+    <feTurbulence type="fractalNoise" baseFrequency=".38" numOctaves="3" seed="8" stitchTiles="stitch"/>
+    <feColorMatrix type="matrix" values="0.91 0 0 0 0
+                                          0.25 0 0 0 0
+                                          0.60 0 0 0 0
+                                          0    0 0 1 0"/>
+  </filter>
+  <rect width="100%" height="100%" filter="url(#gf2)"/>
+</svg>
 
 <!-- ══════════════════════════
      HERO
