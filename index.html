@@ -117,7 +117,7 @@
 
     #title-3d {
       width: min(92vw, 1100px);
-      height: clamp(90px, 17vw, 200px);
+      height: clamp(110px, 22vw, 260px);
       position: relative; z-index: 2;
       display: block;
       opacity: 0;
@@ -1618,7 +1618,7 @@ if (canvas) {
 
   // Dark front face, pink sides — depth reveals the accent color as it rocks
   const matFront = new THREE.MeshStandardMaterial({ color: 0x1a1611, roughness: 0.35, metalness: 0.1 });
-  const matSide  = new THREE.MeshStandardMaterial({ color: 0xe8419a, roughness: 0.4,  metalness: 0.05 });
+  const matSide  = new THREE.MeshStandardMaterial({ color: 0x3a3530, roughness: 0.6,  metalness: 0.0 });
 
   let mesh;
 
@@ -1632,7 +1632,7 @@ if (canvas) {
       const bb = mesh.geometry.boundingBox;
       const textW = bb.max.x - bb.min.x;
       const vFov = THREE.MathUtils.degToRad(camera.fov);
-      camera.position.z = (textW / 2) / (Math.tan(vFov / 2) * camera.aspect * 0.82);
+      camera.position.z = (textW / 2) / (Math.tan(vFov / 2) * camera.aspect * 0.58);
     }
     camera.updateProjectionMatrix();
   }
@@ -1645,7 +1645,7 @@ if (canvas) {
       const geo = new TextGeometry('BOOYAH', {
         font,
         size: 1,
-        depth: 0.32,
+        depth: 0.10,
         curveSegments: 8,
         bevelEnabled: true,
         bevelThickness: 0.05,
@@ -1672,7 +1672,7 @@ if (canvas) {
     requestAnimationFrame(tick);
     if (mesh) {
       const t = clock.getElapsedTime();
-      mesh.rotation.y = Math.sin(t / 3) * 0.22;       // ±12.6° Y rock
+      mesh.rotation.y = Math.sin(t / 3) * 0.14;       // ±8° Y rock
       mesh.rotation.x = Math.sin(t / 5) * 0.04;       // subtle X nod
     }
     renderer.render(scene, camera);
