@@ -85,15 +85,6 @@
       opacity: 0;
       animation: fadeUp .7s .3s forwards;
     }
-    .hero-badge::before {
-      content: '';
-      position: absolute;
-      inset: -2px -6px;
-      background: #1a1611;
-      border-radius: 3px 7px 4px 2px / 5px 3px 7px 2px;
-      z-index: -1;
-      transform: rotate(-2.2deg);
-    }
 
     #title-3d {
       width: min(92vw, 1100px);
@@ -1620,7 +1611,7 @@ if (canvas) {
       const geo = new TextGeometry('BOOYAH', {
         font,
         size: 1,
-        depth: 0.22,
+        depth: 0.15,
         curveSegments: 12,
         bevelEnabled: true,
         bevelThickness: 0.022,
